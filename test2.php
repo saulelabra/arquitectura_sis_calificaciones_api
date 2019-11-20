@@ -25,7 +25,7 @@
 
     while( $row = sqlsrv_fetch_array( $stmt, SQLSRV_FETCH_ASSOC) ) {
         echo $row;
-        //echo $row['LastName'].", ".$row['FirstName']."<br />";
+        echo $row['matricula'].", ".$row['nombre']."<br />";
     }
     
     sqlsrv_free_stmt( $stmt);
