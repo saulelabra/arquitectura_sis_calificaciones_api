@@ -19,14 +19,19 @@
 
     $stmt = sqlsrv_query( $conn, $query );
 
-    if( $stmt === false) {
+    /*if( $stmt === false) {
         die( print_r( sqlsrv_errors(), true) );
-    }
+    }*/
+
+    $json = array();
 
     while( $row = sqlsrv_fetch_array( $stmt, SQLSRV_FETCH_ASSOC) ) {
-        echo $row;
-        echo $row['matricula'].", ".$row['nombre']."<br />";
+        $json['matricula'] = $row[Estudiante.matricula];
+        $json['nombre'] = $row[Estudiante.nombre];
+        $data[] = $json;
     }
+
+    return "{\"Camion\": ".json_encode($data)."}";
     
     sqlsrv_free_stmt( $stmt);
 ?>
