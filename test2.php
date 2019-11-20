@@ -15,11 +15,7 @@
     $serverName = "tcp:sistema-calificaciones-db.database.windows.net,1433";
     $conn = sqlsrv_connect($serverName, $connectionInfo);
 
-    $query = 'Select Table_name as "Table name"
-    From Information_schema.Tables
-    Where Table_type = "BASE TABLE" and Objectproperty 
-    (Object_id(Table_name), "IsMsShipped") = 0
-    order by "Table name"';
+    $query = 'Select * from sistemaCalificaciones.Estudiante';
 
     $stmt = sqlsrv_query( $conn, $query );
 
