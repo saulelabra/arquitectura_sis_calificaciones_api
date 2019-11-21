@@ -26,8 +26,8 @@
     $json = array();
 
     while( $row = sqlsrv_fetch_array( $stmt, SQLSRV_FETCH_ASSOC) ) {
-        $json['matricula'] = $row[sistemaCalificaciones.Estudiante.matricula];
-        $json['nombre'] = $row[sistemaCalificaciones.Estudiante.nombre];
+        $json['matricula'] = $row['matricula'];
+        $json['nombre'] = $row['nombre'];
         $data[] = $json;
     }
 
