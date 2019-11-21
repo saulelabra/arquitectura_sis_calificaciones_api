@@ -31,7 +31,8 @@
         $data[] = $json;
     }
 
-    echo "hola";
+    $jsonOut = json_encode($data);
+    echo $jsonOut;
 
     return "{\"Camion\": ".json_encode($data)."}";
     
