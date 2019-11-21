@@ -31,6 +31,8 @@
         $data[] = $json;
     }
 
+    echo "hola";
+
     return "{\"Camion\": ".json_encode($data)."}";
     
     sqlsrv_free_stmt( $stmt);
