@@ -19,7 +19,7 @@
     $conn = sqlsrv_connect($serverName, $connectionInfo);
 
     $query1 = "SELECT * FROM sistemaCalificaciones.Profesor WHERE email = '$user' AND contrasena = '$pwd'";
-    $query2 = "SELECT * FROM sistemaCalificaciones.Estudiante WHERE email = '$user' AND contrasena = '$pwd'";
+    $query2 = "SELECT * FROM sistemaCalificaciones.Estudiante WHERE matricula = '$user' AND contrasena = '$pwd'";
 
     //$query = "SELECT * FROM sistemaCalifiaciones.Profesor WHERE EXISTS (SELECT * FROM sistemaCalifiaciones.Profesor WHERE email='$user' AND contrasena='$pwd')";
 
@@ -27,12 +27,12 @@
     $num_rows = sqlsrv_num_rows( $stmt );
 
     if($num_rows > 0) {
-        echo '{ "type" : "profesor", "exists" : true }';
+        echo '{ "type" : "professor", "exists" : true }';
     }else{
-        $stmt = sqlsrv_query( $conn, $query2 );
-        $num_rows = sqlsrv_num_rows($stmt);
+        $stmt2 = sqlsrv_query( $conn, $query2 );
+        $num_rows2 = sqlsrv_num_rows($stmt2);
         
-        if($num_rows > 0) {
+        if($num_rows2 > 0) {
             echo '{ "type" : "student", "exists" : true }';
         }else{
             echo '{ "type" : "notype", "exists" : false }';
