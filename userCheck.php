@@ -23,7 +23,7 @@
 
     //$query = "SELECT * FROM sistemaCalifiaciones.Profesor WHERE EXISTS (SELECT * FROM sistemaCalifiaciones.Profesor WHERE email='$user' AND contrasena='$pwd')";
 
-    $stmt = sqlsrv_query( $conn, $query1 );
+    $stmt = sqlsrv_query( $conn, $query1, array(), array( "Scrollable" => 'static' ));
     $num_rows = sqlsrv_num_rows( $stmt );
 
     echo "hola:  $num_rows";
