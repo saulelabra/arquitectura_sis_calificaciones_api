@@ -17,15 +17,26 @@
     $serverName = "tcp:sistema-calificaciones-db.database.windows.net,1433";
     $conn = sqlsrv_connect($serverName, $connectionInfo);
 
-    $query = "SELECT clave, nombre FROM sistemaCalificaciones.Materia WHERE profesorEmail='$user'";
-
-    $stmt = sqlsrv_query( $conn, $query);
-
+    //$query = "SELECT estudiante_matricula, materia_clave, caCad FROM sistemaCalificaciones.Calificacion_estudiante WHERE materia_clave = '$materia'";
+    $query = "SELECT * FROM sistemaCalificaciones.Calificacion_estudiante";
+    $stmt = sqlsrv_query( $conn, $query );
+    
+    /*if( $stmt === false) {
+        die( print_r( sqlsrv_errors(), true) );
+    }*/
+    
+    echo ("Reading data from table" . PHP_EOL);
+    
     $json = array();
+     
 
+     if ($stmt == FALSE)
+        echo (sqlsrv_errors());
+   
     while( $row = sqlsrv_fetch_array( $stmt, SQLSRV_FETCH_ASSOC) ) {
-        $json['clave'] = $row['clave'];
-        $json['nombre'] = $row['nombre'];
+        $json['estudiante_matricula'] = $row['estudiante_matricula'];
+        $json['materia_clave'] = $row['materia_clave'];
+        $json['caCad'] = $row['caCad'];
         $data[] = $json;
     }
 
