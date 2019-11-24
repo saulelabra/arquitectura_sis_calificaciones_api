@@ -39,22 +39,6 @@
         }
     }
 
-    /*if( $stmt === false) {
-        die( print_r( sqlsrv_errors(), true) );
-    }
-
-    $json = array();
-
-    while( $row = sqlsrv_fetch_array( $stmt, SQLSRV_FETCH_ASSOC) ) {
-        $json['email'] = $row['email'];
-        $json['contrasena'] = $row['contrasena'];
-        $json['nombre'] = $row['nombre'];
-        $data[] = $json;
-    }
-
-    $jsonOut = json_encode($data);
-    echo $jsonOut;*/
-
     return;
     
     sqlsrv_free_stmt( $stmt);
