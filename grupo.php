@@ -1,7 +1,7 @@
 
 <?php
 
-    $materia = $_POST['clave'];
+    $materia = $_POST['TC1000'];
     // PHP Data Objects(PDO) Sample Code:
     try {
         $conn = new PDO("sqlsrv:server = tcp:sistema-calificaciones-db.database.windows.net,1433; Database = sistema-calificaciones", "saulelabra", "ConstruyeDB1");
