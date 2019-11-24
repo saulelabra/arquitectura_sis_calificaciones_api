@@ -18,9 +18,17 @@
     $serverName = "tcp:sistema-calificaciones-db.database.windows.net,1433";
     $conn = sqlsrv_connect($serverName, $connectionInfo);
 
-    $query = "SELECT * FROM sistemaCalificaciones.Profesor WHERE email = '$user' AND contrasena = '$pwd'";
+    //$query = "SELECT * FROM sistemaCalificaciones.Profesor WHERE email = '$user' AND contrasena = '$pwd'";
+
+    $query = "SELECT * FROM sistemaCalifiaciones.Profesor WHERE EXISTS (SELECT * FROM sistemaCalifiaciones.Profesor WHERE email='$user' AND contrasena='$pwd')";
 
     $stmt = sqlsrv_query( $conn, $query );
+
+    if($stmt->rowCount() > 0) {
+        $json = array();
+
+        
+    }
 
     if( $stmt === false) {
         die( print_r( sqlsrv_errors(), true) );
