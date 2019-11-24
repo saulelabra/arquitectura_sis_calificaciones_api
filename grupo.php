@@ -1,7 +1,7 @@
 
 <?php
 
-    $materia = $_POST['TC1000'];
+    $materia_clave = $_POST['TC1000'];
     // PHP Data Objects(PDO) Sample Code:
     try {
         $conn = new PDO("sqlsrv:server = tcp:sistema-calificaciones-db.database.windows.net,1433; Database = sistema-calificaciones", "saulelabra", "ConstruyeDB1");
@@ -15,8 +15,10 @@
     $connectionInfo = array("UID" => "saulelabra", "pwd" => "ConstruyeDB1", "Database" => "sistema-calificaciones", "LoginTimeout" => 30, "Encrypt" => 1, "TrustServerCertificate" => 0);
     $serverName = "tcp:sistema-calificaciones-db.database.windows.net,1433";
     $conn = sqlsrv_connect($serverName, $connectionInfo);
-    $query = "SELECT * FROM sistemaCalificaciones.Calificacion_estudiante WHERE materia_clave = '%TC1000'";
+     //$query = "SELECT * FROM sistemaCalificaciones.Calificacion_estudiante WHERE materia_clave = '%TC1000'";
+    $query = "SELECT * FROM sistemaCalificaciones.Calificacion_estudiante";
    
+
     $stmt = sqlsrv_query( $conn, $query );
     
     /*if( $stmt === false) {
