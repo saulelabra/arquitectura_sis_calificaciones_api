@@ -23,14 +23,15 @@
     //$query = "SELECT * FROM sistemaCalifiaciones.Profesor WHERE EXISTS (SELECT * FROM sistemaCalifiaciones.Profesor WHERE email='$user' AND contrasena='$pwd')";
 
     $stmt = sqlsrv_query( $conn, $query );
+    $num_rows = sqlsrv_num_rows( $stmt );
 
-    /*if($stmt->rowCount() > 0) {
-        $json = array();
+    if($num_rows > 0) {
+        echo '{ "exists" : true }';
+    }else{
+        echo '{ "exists" : false }';
+    }
 
-        echo "true";
-    }*/
-
-    if( $stmt === false) {
+    /*if( $stmt === false) {
         die( print_r( sqlsrv_errors(), true) );
     }
 
@@ -44,7 +45,7 @@
     }
 
     $jsonOut = json_encode($data);
-    echo $jsonOut;
+    echo $jsonOut;*/
 
     return;
     
