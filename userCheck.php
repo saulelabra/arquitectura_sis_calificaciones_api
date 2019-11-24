@@ -27,7 +27,7 @@
     if($stmt->rowCount() > 0) {
         $json = array();
 
-        echo "true";
+        //echo "true";
     }
 
     if( $stmt === false) {
