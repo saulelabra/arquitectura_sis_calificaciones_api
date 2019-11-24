@@ -15,7 +15,7 @@
     $connectionInfo = array("UID" => "saulelabra", "pwd" => "ConstruyeDB1", "Database" => "sistema-calificaciones", "LoginTimeout" => 30, "Encrypt" => 1, "TrustServerCertificate" => 0);
     $serverName = "tcp:sistema-calificaciones-db.database.windows.net,1433";
     $conn = sqlsrv_connect($serverName, $connectionInfo);
-    $query = "SELECT estudiante_matricula, materia_clave, cAcad FROM sistemaCalificaciones.Calificacion_estudiante WHERE materia_clave = '$materia_clave'";
+    $query = "SELECT estudiante_matricula, materia_clave, cAcad FROM sistemaCalificaciones.Calificacion_estudiante WHERE materia_clave = 'TC1000'";
     //$query = "SELECT * FROM sistemaCalificaciones.Calificacion_estudiante";
    
 
@@ -30,9 +30,9 @@
     $json = array();
 
     while( $row = sqlsrv_fetch_array( $stmt, SQLSRV_FETCH_ASSOC) ) {
-        echo $json['estudiante_matricula'] = $row['estudiante_matricula'];
-        echo $json['materia_clave'] = $row['materia_clave'];
-        echo $json['caCad'] = $row['cAcad'];
+        $json['estudiante_matricula'] = $row['estudiante_matricula'];
+        $json['materia_clave'] = $row['materia_clave'];
+        $json['cAcad'] = $row['cAcad'];
         $data[] = $json;
     }
     
