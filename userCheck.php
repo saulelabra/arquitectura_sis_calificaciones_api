@@ -37,7 +37,8 @@
     $json = array();
 
     while( $row = sqlsrv_fetch_array( $stmt, SQLSRV_FETCH_ASSOC) ) {
-        $json['matricula'] = $row['matricula'];
+        $json['email'] = $row['email'];
+        $json['contrasena'] = $row['contrasena']
         $json['nombre'] = $row['nombre'];
         $data[] = $json;
     }
