@@ -15,8 +15,8 @@
     $connectionInfo = array("UID" => "saulelabra", "pwd" => "ConstruyeDB1", "Database" => "sistema-calificaciones", "LoginTimeout" => 30, "Encrypt" => 1, "TrustServerCertificate" => 0);
     $serverName = "tcp:sistema-calificaciones-db.database.windows.net,1433";
     $conn = sqlsrv_connect($serverName, $connectionInfo);
-    $query = "SELECT estudiante_matricula, materia_clave, cAcad FROM sistemaCalificaciones.Calificacion_estudiante WHERE materia_clave = 'TC1000'";
-    //$query = "SELECT * FROM sistemaCalificaciones.Calificacion_estudiante";
+    //$query = "SELECT estudiante_matricula, materia_clave, cAcad FROM sistemaCalificaciones.Calificacion_estudiante WHERE materia_clave = 'TC1000'";
+    $query = "SELECT * FROM sistemaCalificaciones.Calificacion_estudiante";
    
 
     //$stmt = sqlsrv_query( $conn, $query );
