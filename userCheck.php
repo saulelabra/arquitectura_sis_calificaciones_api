@@ -18,17 +18,25 @@
     $serverName = "tcp:sistema-calificaciones-db.database.windows.net,1433";
     $conn = sqlsrv_connect($serverName, $connectionInfo);
 
-    $query = "SELECT * FROM sistemaCalificaciones.Profesor WHERE email = '$user' AND contrasena = '$pwd'";
+    $query1 = "SELECT * FROM sistemaCalificaciones.Profesor WHERE email = '$user' AND contrasena = '$pwd'";
+    $query2 = "SELECT * FROM sistemaCalificaciones.Estudiante WHERE email = '$user' AND contrasena = '$pwd'";
 
     //$query = "SELECT * FROM sistemaCalifiaciones.Profesor WHERE EXISTS (SELECT * FROM sistemaCalifiaciones.Profesor WHERE email='$user' AND contrasena='$pwd')";
 
-    $stmt = sqlsrv_query( $conn, $query );
+    $stmt = sqlsrv_query( $conn, $query1 );
     $num_rows = sqlsrv_num_rows( $stmt );
 
     if($num_rows > 0) {
-        echo '{ "exists" : true }';
+        echo '{ "type" : "profesor", "exists" : true }';
     }else{
-        echo '{ "exists" : false }';
+        $stmt = sqlsrv_query( $conn, $query2 );
+        $num_rows = sqlsrv_num_rows($stmt);
+        
+        if($num_rows > 0) {
+            echo '{ "type" : "student", "exists" : true }';
+        }else{
+            echo '{ "type" : "notype", "exists" : false }';
+        }
     }
 
     /*if( $stmt === false) {
