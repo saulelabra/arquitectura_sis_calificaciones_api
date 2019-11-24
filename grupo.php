@@ -17,7 +17,7 @@
     $conn = sqlsrv_connect($serverName, $connectionInfo);
     
     //$query = "SELECT estudiante_matricula, materia_clave, caCad FROM sistemaCalificaciones.Calificacion_estudiante WHERE materia_clave = '$materia'";
-    $query = "SELECT * FROM sistemaCalificaciones.Calificacion_estudiante WHERE materia_clave = '$materia'";
+    $query = "SELECT * FROM sistemaCalificaciones.Calificacion_estudiante WHERE materia_clave = 'TC1000'";
     $stmt = sqlsrv_query( $conn, $query );
     
     /*if( $stmt === false) {
