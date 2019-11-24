@@ -1,7 +1,7 @@
 
 <?php
 
-    $materia = $_POST['clave'];
+    $materia = $_POST['materia_clave']
     // PHP Data Objects(PDO) Sample Code:
     try {
         $conn = new PDO("sqlsrv:server = tcp:sistema-calificaciones-db.database.windows.net,1433; Database = sistema-calificaciones", "saulelabra", "ConstruyeDB1");
@@ -15,7 +15,8 @@
     $connectionInfo = array("UID" => "saulelabra", "pwd" => "ConstruyeDB1", "Database" => "sistema-calificaciones", "LoginTimeout" => 30, "Encrypt" => 1, "TrustServerCertificate" => 0);
     $serverName = "tcp:sistema-calificaciones-db.database.windows.net,1433";
     $conn = sqlsrv_connect($serverName, $connectionInfo);
-    $query = "SELECT estudiante_matricula FROM sistemaCalificaciones.Calificacion_estudiante";
+    
+    $query = "SELECT estudiante_matricula, materia_clave, caCad FROM sistemaCalificaciones.Calificacion_estudiante WHERE materia_clave = '$materia'";
    
     $stmt = sqlsrv_query( $conn, $query );
     
@@ -33,14 +34,14 @@
    
     while( $row = sqlsrv_fetch_array( $stmt, SQLSRV_FETCH_ASSOC) ) {
         $json['estudiante_matricula'] = $row['estudiante_matricula'];
-       // $json['materia_clave'] = $row['materia_clave'];
-       // $json['caCad'] = $row['caCad'];
+        $json['materia_clave'] = $row['materia_clave'];
+        $json['caCad'] = $row['caCad'];
         $data[] = $json;
     }
     
     $jsonOut = json_encode($data);
     echo $jsonOut;
-    return;
+    return ;
     
     sqlsrv_free_stmt( $stmt);
 ?>
