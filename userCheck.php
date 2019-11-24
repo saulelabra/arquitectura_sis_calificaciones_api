@@ -28,7 +28,7 @@
 
     echo $num_rows;
 
-    if($num_rows > 0) {
+    /*if($num_rows > 0) {
         echo '{ "type" : "professor", "exists" : true }';
     }else{
         $stmt2 = sqlsrv_query( $conn, $query2 );
@@ -41,7 +41,7 @@
         }else{
             echo '{ "type" : "notype", "exists" : false }';
         }
-    }
+    }*/
 
     /*if( $stmt === false) {
         die( print_r( sqlsrv_errors(), true) );
