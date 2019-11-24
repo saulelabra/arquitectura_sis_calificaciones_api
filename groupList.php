@@ -1,7 +1,5 @@
 <?php
-
     $user = $_POST['user'];
-
     // PHP Data Objects(PDO) Sample Code:
     try {
         $conn = new PDO("sqlsrv:server = tcp:sistema-calificaciones-db.database.windows.net,1433; Database = sistema-calificaciones", "saulelabra", "ConstruyeDB1");
@@ -11,38 +9,20 @@
         print("Error connecting to SQL Server.");
         die(print_r($e));
     }
-
     // SQL Server Extension Sample Code:
     $connectionInfo = array("UID" => "saulelabra", "pwd" => "ConstruyeDB1", "Database" => "sistema-calificaciones", "LoginTimeout" => 30, "Encrypt" => 1, "TrustServerCertificate" => 0);
     $serverName = "tcp:sistema-calificaciones-db.database.windows.net,1433";
     $conn = sqlsrv_connect($serverName, $connectionInfo);
-
-    //$query = "SELECT estudiante_matricula, materia_clave, caCad FROM sistemaCalificaciones.Calificacion_estudiante WHERE materia_clave = '$materia'";
-    $query = "SELECT * FROM sistemaCalificaciones.Calificacion_estudiante";
-    $stmt = sqlsrv_query( $conn, $query );
-    
-    /*if( $stmt === false) {
-        die( print_r( sqlsrv_errors(), true) );
-    }*/
-    
-    echo ("Reading data from table" . PHP_EOL);
-    
+    $query = "SELECT clave, nombre FROM sistemaCalificaciones.Materia WHERE profesorEmail='$user'";
+    $stmt = sqlsrv_query( $conn, $query);
     $json = array();
-     
-
-     if ($stmt == FALSE)
-        echo (sqlsrv_errors());
-   
     while( $row = sqlsrv_fetch_array( $stmt, SQLSRV_FETCH_ASSOC) ) {
-        $json['estudiante_matricula'] = $row['estudiante_matricula'];
-        $json['materia_clave'] = $row['materia_clave'];
-        $json['caCad'] = $row['caCad'];
+        $json['clave'] = $row['clave'];
+        $json['nombre'] = $row['nombre'];
         $data[] = $json;
     }
-
     $jsonOut = json_encode($data);
     echo $jsonOut;
-
     return;
     
     sqlsrv_free_stmt( $stmt);
