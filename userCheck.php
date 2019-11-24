@@ -26,7 +26,7 @@
     $stmt = sqlsrv_query( $conn, $query1 );
     $num_rows = sqlsrv_num_rows( $stmt );
 
-    echo $num_rows;
+    echo "hola:  $num_rows";
 
     /*if($num_rows > 0) {
         echo '{ "type" : "professor", "exists" : true }';
