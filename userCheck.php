@@ -24,11 +24,11 @@
 
     $stmt = sqlsrv_query( $conn, $query );
 
-    if($stmt->rowCount() > 0) {
+    /*if($stmt->rowCount() > 0) {
         $json = array();
 
-        //echo "true";
-    }
+        echo "true";
+    }*/
 
     if( $stmt === false) {
         die( print_r( sqlsrv_errors(), true) );
