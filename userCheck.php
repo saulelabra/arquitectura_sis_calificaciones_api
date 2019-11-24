@@ -26,11 +26,15 @@
     $stmt = sqlsrv_query( $conn, $query1 );
     $num_rows = sqlsrv_num_rows( $stmt );
 
+    echo $num_rows;
+
     if($num_rows > 0) {
         echo '{ "type" : "professor", "exists" : true }';
     }else{
         $stmt2 = sqlsrv_query( $conn, $query2 );
         $num_rows2 = sqlsrv_num_rows($stmt2);
+
+        echo $num_rows2;
         
         if($num_rows2 > 0) {
             echo '{ "type" : "student", "exists" : true }';
