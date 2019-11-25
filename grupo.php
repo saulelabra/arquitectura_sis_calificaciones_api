@@ -19,15 +19,20 @@
     $query = "SELECT * FROM sistemaCalificaciones.Calificacion_estudiante";
     printf("Reading data from table: \n");
 
-    //$stmt = sqlsrv_query( $conn, $query );
+    $stmt = sqlsrv_query( $conn, $query );
     
     /*if( $stmt === false) {
         die( print_r( sqlsrv_errors(), true) );
-    }*/
-    $stmt = mysqli_query($conn, $query);
+    }*
+
     while ($row = mysqli_fetch_assoc($res)) {
         var_dump($row);
+    }*/
+
+    while ($row = mysqli_fetch_assoc($stmt)) {
+        var_dump($row);
     }
+    echo $stmt;
     //$stmt = sqlsrv_query( $conn, $query );
     
     $json = array();
