@@ -1,6 +1,4 @@
 <?php
-    $user = $_POST['user'];
-
     $rawInput = file_get_contents('php://input');
 
     $inputJson = json_decode($rawInput);

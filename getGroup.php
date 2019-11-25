@@ -1,7 +1,9 @@
 
 <?php
+    $rawInput = file_get_contents('php://input');
 
-    //$materia = $_POST['materiaClave'];
+    $inputJson = json_decode($rawInput);
+
     // PHP Data Objects(PDO) Sample Code:
     try {
         $conn = new PDO("sqlsrv:server = tcp:sistema-calificaciones-db.database.windows.net,1433; Database = sistema-calificaciones", "saulelabra", "ConstruyeDB1");
@@ -16,8 +18,11 @@
     $serverName = "tcp:sistema-calificaciones-db.database.windows.net,1433";
     $conn = sqlsrv_connect($serverName, $connectionInfo);
     
-    $query = "SELECT estudianteMatricula, materiaClave, cAcad FROM sistemaCalificaciones.CalificacionEstudiante WHERE materiaClave = 'TC1000'";
-    //$query = "SELECT estudianteMatricula, materiaClave, cAcad FROM sistemaCalificaciones.CalificacionEstudiante WHERE materiaClave = '$materiaClave'";
+    $query = "SELECT estudianteMatricula, Estudiante.nombre , cAcad, cEq, cCom, estatus
+    FROM sistemaCalificaciones.CalificacionEstudiante  
+    INNER JOIN sistemaCalificaciones.Estudiante 
+    ON sistemaCalificaciones.CalificacionEstudiante.estudianteMatricula = sistemaCalificaciones.Estudiante.matricula
+    WHERE materiaClave = '$inputJson->claveMateria'";
     
     $stmt = sqlsrv_query( $conn, $query );
         
@@ -25,8 +30,11 @@
 
     while( $row = sqlsrv_fetch_array( $stmt, SQLSRV_FETCH_ASSOC) ) {
         $json['estudianteMatricula'] =  $row['estudianteMatricula'];
-        $json['materiaClave'] = $row['materiaClave'];
+        $json['nombre'] = $row['nombre'];
         $json['cAcad'] = $row['cAcad'];
+        $json['cEq'] = $row['cEq'];
+        $json['cCom'] = $row['cCom'];
+        $json['estatus'] = $row['estatus'];
         $data[] = $json;
     }
     
