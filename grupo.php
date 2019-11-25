@@ -17,15 +17,18 @@
     $conn = sqlsrv_connect($serverName, $connectionInfo);
     //$query = "SELECT estudiante_matricula, materia_clave, cAcad FROM sistemaCalificaciones.Calificacion_estudiante WHERE materia_clave = 'TC1000'";
     $query = "SELECT * FROM sistemaCalificaciones.Calificacion_estudiante";
-   
+    printf("Reading data from table: \n");
 
     //$stmt = sqlsrv_query( $conn, $query );
     
     /*if( $stmt === false) {
         die( print_r( sqlsrv_errors(), true) );
     }*/
-    
-    $stmt = sqlsrv_query( $conn, $query );
+    $stmt = mysqli_query($conn, $query);
+    while ($row = mysqli_fetch_assoc($res)) {
+        var_dump($row);
+    }
+    //$stmt = sqlsrv_query( $conn, $query );
     
     $json = array();
 
