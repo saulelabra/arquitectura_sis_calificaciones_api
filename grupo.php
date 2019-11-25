@@ -16,7 +16,7 @@
     $conn = sqlsrv_connect($serverName, $connectionInfo);
     
     //$query = "SELECT estudiante_matricula, materia_clave, caCad FROM sistemaCalificaciones.Calificacion_estudiante WHERE materia_clave = '$materia'";
-    $query = "SELECT * FROM sistemaCalificaciones.Calificacion_estudiante WHERE materia_clave = 'TC1000'";
+    $query = "SELECT * FROM sistemaCalificaciones.Calificacion_estudiante";
     $stmt = sqlsrv_query( $conn, $query );
     
     /*if( $stmt === false) {
@@ -28,7 +28,7 @@
     $json = array();
      
 
-     if ($stmt == FALSE)
+    if ($stmt == FALSE)
         echo (sqlsrv_errors());
    
     while( $row = sqlsrv_fetch_array( $stmt, SQLSRV_FETCH_ASSOC) ) {
