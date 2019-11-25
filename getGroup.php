@@ -24,13 +24,14 @@
     ON sistemaCalificaciones.CalificacionEstudiante.estudianteMatricula = sistemaCalificaciones.Estudiante.matricula
     INNER JOIN sistemaCalificaciones.Materia
     ON sistemaCalificaciones.CalificacionEstudiante.materiaClave = sistemaCalificaciones.Materia.clave
-    WHERE materiaClave = 'TC1000'";
+    WHERE materiaClave = '$inputJson->claveMateria'";
     
     $stmt = sqlsrv_query( $conn, $query );
         
     $json = array();
 
     while( $row = sqlsrv_fetch_array( $stmt, SQLSRV_FETCH_ASSOC) ) {
+        $json['materiaNombre'] = $row['materiaNombre'];
         $json['estudianteMatricula'] =  $row['estudianteMatricula'];
         $json['nombre'] = $row['nombre'];
         $json['cAcad'] = $row['cAcad'];
