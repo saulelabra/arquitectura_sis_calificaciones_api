@@ -16,7 +16,7 @@
     $serverName = "tcp:sistema-calificaciones-db.database.windows.net,1433";
     $conn = sqlsrv_connect($serverName, $connectionInfo);
     
-    $query = "SELECT estudianteMatricula, materiaClave, cAcad FROM sistemaCalificaciones.Calificacion_estudiante WHERE materiaClave = '$materia'";
+    $query = "SELECT estudianteMatricula, materiaClave, cAcad FROM sistemaCalificaciones.Calificacion_estudiante";
     //$query = "SELECT estudianteMatricula FROM sistemaCalificaciones.CalificacionEstudiante";
     
     $stmt = sqlsrv_query( $conn, $query );
