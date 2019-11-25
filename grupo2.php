@@ -16,8 +16,7 @@
     $serverName = "tcp:sistema-calificaciones-db.database.windows.net,1433";
     $conn = sqlsrv_connect($serverName, $connectionInfo);
     
-    //$query = "SELECT estudianteMatricula, materiaClave, cAcad FROM sistemaCalificaciones.Calificacion_estudiante";
-    $query = "SELECT estudianteMatricula, materiaClave FROM sistemaCalificaciones.CalificacionEstudiante";
+    $query = "SELECT estudianteMatricula, materiaClave, cAcad FROM sistemaCalificaciones.CalificacionEstudiante";
     
     $stmt = sqlsrv_query( $conn, $query );
         
@@ -25,9 +24,8 @@
 
     while( $row = sqlsrv_fetch_array( $stmt, SQLSRV_FETCH_ASSOC) ) {
         $json['estudianteMatricula'] =  $row['estudianteMatricula'];
-        //echo($row['estudianteMatricula'] . PHP_EOL);
         $json['materiaClave'] = $row['materiaClave'];
-        $json['cAcad'] = $row['caCad'];
+        $json['cAcad'] = $row['cAcad'];
         $data[] = $json;
     }
     
