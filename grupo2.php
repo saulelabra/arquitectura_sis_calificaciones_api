@@ -17,7 +17,6 @@
     $conn = sqlsrv_connect($serverName, $connectionInfo);
     //$query = "SELECT * FROM sistemaCalificaciones.Calificacion_estudiante WHERE materia_clave = '$materia'";
     $query = "SELECT estudiante_matricula FROM sistemaCalificaciones.Calificacion_estudiante";
-    echo ("Reading data from table");
     $stmt = sqlsrv_query( $conn, $query );
     
     /*if( $stmt === false) {
