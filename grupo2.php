@@ -28,13 +28,13 @@
     $json = array();
 
     while( $row = sqlsrv_fetch_array( $stmt, SQLSRV_FETCH_ASSOC) ) {
-        $json['estudiante_matricula'] = $row['estudiante_matricula'];
+        $json['estudiante_matricula'] =  $row['estudiante_matricula'];
+        echo($row['estudiante_matricula'] . PHP_EOL);
         //$json['materia_clave'] = $row['materia_clave'];
         //$json['caCad'] = $row['caCad'];
         $data[] = $json;
     }
     
-    echo $json['estudiante_matricula'] = $row['estudiante_matricula'];
     $jsonOut = json_encode($data);
     echo $jsonOut;
     return;
