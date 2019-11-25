@@ -1,5 +1,8 @@
 <?php
-    //$materia = $_POST['materiaClave'];
+    $rawInput = file_get_contents('php://input');
+
+    $inputJson = json_decode($rawInput);
+    
     // PHP Data Objects(PDO) Sample Code:
     try {
         $conn = new PDO("sqlsrv:server = tcp:sistema-calificaciones-db.database.windows.net,1433; Database = sistema-calificaciones", "saulelabra", "ConstruyeDB1");
