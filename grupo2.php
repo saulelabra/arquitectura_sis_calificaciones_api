@@ -17,7 +17,7 @@
     $conn = sqlsrv_connect($serverName, $connectionInfo);
     
     //$query = "SELECT estudianteMatricula, materiaClave, cAcad FROM sistemaCalificaciones.Calificacion_estudiante";
-    $query = "SELECT estudianteMatricula FROM sistemaCalificaciones.CalificacionEstudiante";
+    $query = "SELECT estudianteMatricula, materiaClave FROM sistemaCalificaciones.CalificacionEstudiante";
     
     $stmt = sqlsrv_query( $conn, $query );
         
