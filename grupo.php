@@ -7,7 +7,7 @@
     );
     //Establishes the connection
     $conn = sqlsrv_connect($serverName, $connectionOptions);
-    $tsql= "SELECT * FROM sistemaCalificaciones.Calificacion_estudiante";
+    $tsql= "SELECT estudiante_matricula, materia_clave, caCad FROM sistemaCalificaciones.Calificacion_estudiante WHERE materia_clave = 'TC1000'";
         
     $getResults= sqlsrv_query($conn, $tsql);
     echo ("Reading..." . PHP_EOL);
