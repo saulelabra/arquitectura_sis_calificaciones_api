@@ -14,8 +14,16 @@
     if ($getResults == FALSE)
         echo (sqlsrv_errors());
     while ($row = sqlsrv_fetch_array($getResults, SQLSRV_FETCH_ASSOC)) {
-     echo ($row['estudiante_matricula'] . " " . $row['materia_clave'] . PHP_EOL);
+        $json['estudiante_matricula'] = $row['estudiante_matricula'];
+        $json['materia_clave'] = $row['materia_clave'];
+        $json['caCad'] = $row['caCad'];
+        $data[] = $json;
     }
+
+    $jsonOut = json_encode($data);
+    echo $jsonOut;
+    return;
+
     sqlsrv_free_stmt($getResults);
 ?>
 
