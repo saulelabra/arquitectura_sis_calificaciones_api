@@ -25,7 +25,7 @@
 
     while( $row = sqlsrv_fetch_array( $stmt, SQLSRV_FETCH_ASSOC) ) {
         $json['estudianteMatricula'] =  $row['estudianteMatricula'];
-        echo($row['estudianteMatricula'] . PHP_EOL);
+        //echo($row['estudianteMatricula'] . PHP_EOL);
         $json['materiaClave'] = $row['materia_clave'];
         $json['cAcad'] = $row['caCad'];
         $data[] = $json;
