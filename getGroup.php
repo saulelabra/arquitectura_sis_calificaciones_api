@@ -18,11 +18,13 @@
     $serverName = "tcp:sistema-calificaciones-db.database.windows.net,1433";
     $conn = sqlsrv_connect($serverName, $connectionInfo);
     
-    $query = "SELECT estudianteMatricula, Estudiante.nombre , cAcad, cEq, cCom, estatus
+    $query = "SELECT sistemaCalificaciones.Materia.nombre AS materiaNombre, estudianteMatricula, Estudiante.nombre, cAcad, cEq, cCom, estatus
     FROM sistemaCalificaciones.CalificacionEstudiante  
     INNER JOIN sistemaCalificaciones.Estudiante 
     ON sistemaCalificaciones.CalificacionEstudiante.estudianteMatricula = sistemaCalificaciones.Estudiante.matricula
-    WHERE materiaClave = '$inputJson->claveMateria'";
+    INNER JOIN sistemaCalificaciones.Materia
+    ON sistemaCalificaciones.CalificacionEstudiante.materiaClave = sistemaCalificaciones.Materia.clave
+    WHERE materiaClave = 'TC1000'";
     
     $stmt = sqlsrv_query( $conn, $query );
         
