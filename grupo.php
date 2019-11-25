@@ -23,8 +23,8 @@
         die( print_r( sqlsrv_errors(), true) );
     }*/
     
-    echo ("Reading data from table" . PHP_EOL);
-    
+  
+    printf("read\n");
     $json = array();
      
 
