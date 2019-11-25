@@ -19,7 +19,7 @@
     
     
 
-    $query = "INSERT INTO CalificacionEstudiante (estudianteMatricula, materiaClave, cAcad, cEq, cCom, estatus)
+    $query = "INSERT INTO sistemaCalificaciones.CalificacionEstudiante (estudianteMatricula, materiaClave, cAcad, cEq, cCom, estatus)
     VALUES ('1111', 'TC2222', '1','1','1','reprobado')";
 
     $stmt = sqlsrv_query($conn, $query);
