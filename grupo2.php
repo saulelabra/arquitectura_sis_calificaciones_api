@@ -1,7 +1,7 @@
 
 <?php
 
-    $materia = $_POST['materiaClave'];
+    //$materia = $_POST['materiaClave'];
     // PHP Data Objects(PDO) Sample Code:
     try {
         $conn = new PDO("sqlsrv:server = tcp:sistema-calificaciones-db.database.windows.net,1433; Database = sistema-calificaciones", "saulelabra", "ConstruyeDB1");
@@ -26,7 +26,7 @@
     while( $row = sqlsrv_fetch_array( $stmt, SQLSRV_FETCH_ASSOC) ) {
         $json['estudianteMatricula'] =  $row['estudianteMatricula'];
         //echo($row['estudianteMatricula'] . PHP_EOL);
-        $json['materiaClave'] = $row['materia_clave'];
+        $json['materiaClave'] = $row['materiaClave'];
         $json['cAcad'] = $row['caCad'];
         $data[] = $json;
     }
