@@ -1,24 +1,43 @@
 <?php
+
+    $materia = $_POST['materia_clave']
+    // PHP Data Objects(PDO) Sample Code:
+    try {
+        $conn = new PDO("sqlsrv:server = tcp:sistema-calificaciones-db.database.windows.net,1433; Database = sistema-calificaciones", "saulelabra", "ConstruyeDB1");
+        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    }
+    catch (PDOException $e) {
+        print("Error connecting to SQL Server.");
+        die(print_r($e));
+    }
+    // SQL Server Extension Sample Code:
+    $connectionInfo = array("UID" => "saulelabra", "pwd" => "ConstruyeDB1", "Database" => "sistema-calificaciones", "LoginTimeout" => 30, "Encrypt" => 1, "TrustServerCertificate" => 0);
     $serverName = "tcp:sistema-calificaciones-db.database.windows.net,1433";
-    $connectionOptions = array(
-        "Database" => "sistema-calificaciones", // update me
-        "Uid" => "saulelabra", // update me
-        "PWD" => "ConstruyeDB1" // update me
-    );
-    //Establishes the connection
-    $conn = sqlsrv_connect($serverName, $connectionOptions);
-    $tsql= "SELECT estudiante_matricula, materia_clave, caCad FROM sistemaCalificaciones.Calificacion_estudiante";
-        
-    $getResults= sqlsrv_query($conn, $tsql);
-    echo ("Reading!..." . PHP_EOL);
-    if ($getResults == FALSE)
+    $conn = sqlsrv_connect($serverName, $connectionInfo);
+    
+    //$query = "SELECT estudiante_matricula, materia_clave, caCad FROM sistemaCalificaciones.Calificacion_estudiante WHERE materia_clave = '$materia'";
+    $query = "SELECT * FROM sistemaCalificaciones.Calificacion_estudiante WHERE materia_clave = 'TC1000'";
+    $stmt = sqlsrv_query( $conn, $query );
+    
+    /*if( $stmt === false) {
+        die( print_r( sqlsrv_errors(), true) );
+    }*/
+    
+    echo ("Reading data from table" . PHP_EOL);
+    
+    $json = array();
+     
+
+     if ($stmt == FALSE)
         echo (sqlsrv_errors());
-    while ($row = sqlsrv_fetch_array($getResults, SQLSRV_FETCH_ASSOC)) {
+   
+    while( $row = sqlsrv_fetch_array( $stmt, SQLSRV_FETCH_ASSOC) ) {
         $json['estudiante_matricula'] = $row['estudiante_matricula'];
         $json['materia_clave'] = $row['materia_clave'];
         $json['caCad'] = $row['caCad'];
         $data[] = $json;
     }
+
 
     $jsonOut = json_encode($data);
     echo $jsonOut;
