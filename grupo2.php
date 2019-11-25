@@ -17,7 +17,7 @@
     $conn = sqlsrv_connect($serverName, $connectionInfo);
     //$query = "SELECT * FROM sistemaCalificaciones.Calificacion_estudiante WHERE materia_clave = '$materia'";
     $query = "SELECT * FROM sistemaCalificaciones.Calificacion_estudiante";
-    echo ("Reading data from table" . PHP_EOL);
+    echo ("Reading data from table");
     $stmt = sqlsrv_query( $conn, $query );
     
     /*if( $stmt === false) {
@@ -29,11 +29,12 @@
 
     while( $row = sqlsrv_fetch_array( $stmt, SQLSRV_FETCH_ASSOC) ) {
         $json['estudiante_matricula'] = $row['estudiante_matricula'];
-        $json['materia_clave'] = $row['materia_clave'];
-        $json['caCad'] = $row['caCad'];
+        //$json['materia_clave'] = $row['materia_clave'];
+        //$json['caCad'] = $row['caCad'];
         $data[] = $json;
     }
     
+    echo $json['estudiante_matricula'] = $row['estudiante_matricula'];
     $jsonOut = json_encode($data);
     echo $jsonOut;
     return;
