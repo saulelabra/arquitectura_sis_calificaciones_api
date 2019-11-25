@@ -1,52 +1,25 @@
-
 <?php
-
-    $materia_clave = $_POST['materia_clave'];
-    // PHP Data Objects(PDO) Sample Code:
-    try {
-        $conn = new PDO("sqlsrv:server = tcp:sistema-calificaciones-db.database.windows.net,1433; Database = sistema-calificaciones", "saulelabra", "ConstruyeDB1");
-        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    }
-    catch (PDOException $e) {
-        print("Error connecting to SQL Server.");
-        die(print_r($e));
-    }
-    // SQL Server Extension Sample Code:
-    $connectionInfo = array("UID" => "saulelabra", "pwd" => "ConstruyeDB1", "Database" => "sistema-calificaciones", "LoginTimeout" => 30, "Encrypt" => 1, "TrustServerCertificate" => 0);
     $serverName = "tcp:sistema-calificaciones-db.database.windows.net,1433";
-    $conn = sqlsrv_connect($serverName, $connectionInfo);
-    //$query = "SELECT estudiante_matricula, materia_clave, cAcad FROM sistemaCalificaciones.Calificacion_estudiante WHERE materia_clave = 'TC1000'";
-    $query = "SELECT * FROM sistemaCalificaciones.Calificacion_estudiante";
-    printf("Reading data from table: \n");
-
-    $stmt = sqlsrv_query( $conn, $query );
-    
-    /*if( $stmt === false) {
-        die( print_r( sqlsrv_errors(), true) );
-    }*
-
-    while ($row = mysqli_fetch_assoc($res)) {
-        var_dump($row);
-    }*/
-
-    while ($row = mysqli_fetch_assoc($stmt)) {
-        var_dump($row);
+    $connectionOptions = array(
+        "Database" => "sistema-calificaciones", // update me
+        "Uid" => "saulelabra", // update me
+        "PWD" => "ConstruyeDB1" // update me
+    );
+    //Establishes the connection
+    $conn = sqlsrv_connect($serverName, $connectionOptions);
+    $tsql= "SELECT TOP 20 pc.Name as CategoryName, p.name as ProductName
+         FROM [SalesLT].[ProductCategory] pc
+         JOIN [SalesLT].[Product] p
+         ON pc.productcategoryid = p.productcategoryid";
+    $getResults= sqlsrv_query($conn, $tsql);
+    echo ("Reading data from table" . PHP_EOL);
+    if ($getResults == FALSE)
+        echo (sqlsrv_errors());
+    while ($row = sqlsrv_fetch_array($getResults, SQLSRV_FETCH_ASSOC)) {
+     echo ($row['CategoryName'] . " " . $row['ProductName'] . PHP_EOL);
     }
-    echo $stmt;
-    //$stmt = sqlsrv_query( $conn, $query );
-    
-    $json = array();
-
-    while( $row = sqlsrv_fetch_array( $stmt, SQLSRV_FETCH_ASSOC) ) {
-        $json['estudiante_matricula'] = $row['estudiante_matricula'];
-        $json['materia_clave'] = $row['materia_clave'];
-        $json['cAcad'] = $row['cAcad'];
-        $data[] = $json;
-    }
-    
-    $jsonOut = json_encode($data);
-    echo $jsonOut;
-    return;
-    
-    sqlsrv_free_stmt( $stmt);
+    sqlsrv_free_stmt($getResults);
 ?>
+
+
+
