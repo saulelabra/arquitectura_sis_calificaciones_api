@@ -7,10 +7,10 @@
     );
     //Establishes the connection
     $conn = sqlsrv_connect($serverName, $connectionOptions);
-    $tsql= "SELECT estudiante_matricula, materia_clave, caCad FROM sistemaCalificaciones.Calificacion_estudiante WHERE materia_clave = 'TC1000'";
+    $tsql= "SELECT estudiante_matricula, materia_clave, caCad FROM sistemaCalificaciones.Calificacion_estudiante";
         
     $getResults= sqlsrv_query($conn, $tsql);
-    echo ("Reading..." . PHP_EOL);
+    echo ("Reading!..." . PHP_EOL);
     if ($getResults == FALSE)
         echo (sqlsrv_errors());
     while ($row = sqlsrv_fetch_array($getResults, SQLSRV_FETCH_ASSOC)) {
