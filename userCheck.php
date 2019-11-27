@@ -8,8 +8,8 @@
     $serverName = "tcp:sistema-calificaciones-db.database.windows.net,1433";
     $conn = sqlsrv_connect($serverName, $connectionInfo);
 
-    $query1 = "SELECT * FROM sistemaCalificaciones.Profesor WHERE email = '$user' AND contrasena = '$inputJson->user'";
-    $query2 = "SELECT * FROM sistemaCalificaciones.Estudiante WHERE matricula = '$user' AND contrasena = '$inputJson->pwd'";
+    $query1 = "SELECT * FROM sistemaCalificaciones.Profesor WHERE email = '$inputJson->user' AND contrasena = '$inputJson->pwd'";
+    $query2 = "SELECT * FROM sistemaCalificaciones.Estudiante WHERE matricula = '$inputJson->user' AND contrasena = '$inputJson->pwd'";
 
     //$query = "SELECT * FROM sistemaCalifiaciones.Profesor WHERE EXISTS (SELECT * FROM sistemaCalifiaciones.Profesor WHERE email='$user' AND contrasena='$pwd')";
 
