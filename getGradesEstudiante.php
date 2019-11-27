@@ -9,7 +9,7 @@
     $conn = sqlsrv_connect($serverName, $connectionInfo);
     
     //$query = "SELECT estudianteMatricula, materiaClave, cAcad FROM sistemaCalificaciones.CalificacionEstudiante WHERE estudianteMatricula = '$estudianteMatricula'";
-    $query = "SELECT estudianteMatricula, materiaClave, cAcad, estatus FROM sistemaCalificaciones.CalificacionEstudiante WHERE estudianteMatricula = '12345'";
+    $query = "SELECT estudianteMatricula, materiaClave, cAcad, estatus FROM sistemaCalificaciones.CalificacionEstudiante WHERE estudianteMatricula = '$inputJson->matricula'";
     
     
     $stmt = sqlsrv_query( $conn, $query );
@@ -22,10 +22,17 @@
         $json['estatus'] = $row['estatus'];
         $data[] = $json;
     }
+
+    if($data != null)
+    {
+        $jsonOut = json_encode($data);
+        echo $jsonOut;
+    }else{
+        echo '[{}]';
+    }
     
-    $jsonOut = json_encode($data);
-    echo $jsonOut;
+    
     return;
     
-    //sqlsrv_free_stmt( $stmt);
+    sqlsrv_free_stmt( $stmt);
 ?>

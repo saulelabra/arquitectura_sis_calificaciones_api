@@ -41,9 +41,15 @@
         $data['estudiantes'] = $json;
     }
     
-    $jsonOut = json_encode($data);
-    echo $jsonOut;
+    if($data != null)
+    {
+        $jsonOut = json_encode($data);
+        echo $jsonOut;
+    }else{
+        echo '[{}]';
+    }
+
     return;
     
-    //sqlsrv_free_stmt( $stmt);
+    sqlsrv_free_stmt( $stmt);
 ?>
