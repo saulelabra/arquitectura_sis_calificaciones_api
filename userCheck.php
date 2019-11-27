@@ -7,6 +7,7 @@
     try {
         $conn = new PDO("sqlsrv:server = tcp:sistema-calificaciones-db.database.windows.net,1433; Database = sistema-calificaciones", "saulelabra", "ConstruyeDB1");
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $conn->setAttribute(PDO::ATTR_PERSISTENT, true);
     }
     catch (PDOException $e) {
         print("Error connecting to SQL Server.");
@@ -41,5 +42,5 @@
 
     return;
     
-    //sqlsrv_free_stmt( $stmt);
+    sqlsrv_free_stmt( $stmt);
 ?>
