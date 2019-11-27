@@ -54,5 +54,5 @@
     echo $jsonOut;
     return;
     
-    sqlsrv_free_stmt( $stmt);
+    //sqlsrv_free_stmt( $stmt);
 ?>
