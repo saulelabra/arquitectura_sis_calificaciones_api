@@ -1,9 +1,17 @@
 <?php
-$exampleStudent->id = "A01020725";
-$exampleStudent->name = "Pedro Navajas";
-$exampleStudent->username = "Aprobado";
+    include_once("adaptorDB.php");
+    include_once("userCheck2.php");
 
-$jsonOut = json_encode($exampleStudent);
+    $adaptor = new AdaptorDB();
 
-echo $jsonOut;
+    switch($_SERVER['SCRIPT_NAME']) {
+        case "/userCheck2.php":
+            $user = $_GET['user'];
+            $pwd = $_GET['pwd'];
+            $userCheck2 = new userCheck2();
+            $userCheck2->userCheckFunc($user, $pwd, $adaptor);
+            break;
+        default:
+
+    }
 ?>
