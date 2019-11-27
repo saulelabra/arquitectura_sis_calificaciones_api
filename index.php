@@ -6,12 +6,13 @@
 
     switch($_SERVER['SCRIPT_NAME']) {
         case "/userCheck2.php":
+            echo 'entered user check';
             $user = $_GET['user'];
             $pwd = $_GET['pwd'];
             $userCheck2 = new userCheck2();
             $userCheck2->userCheckFunc($user, $pwd, $adaptor);
             break;
         default:
-
+            echo 'entered default';
     }
 ?>
