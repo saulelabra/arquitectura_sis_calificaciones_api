@@ -13,11 +13,13 @@
 
     $json1 = array();
 
-    while( $row = sqlsrv_fetch_array( $stmt, SQLSRV_FETCH_ASSOC) ) {
+    while( $row = sqlsrv_fetch_array( $stmt1, SQLSRV_FETCH_ASSOC) ) {
         $json1['clave'] = $row['clave'];
         $json1['nombre'] = $row['nombre'];
         $data['materias'] = $json;
     }
+
+    $first = $data['materias'][0]->clave;
 
     $query2 = "SELECT sistemaCalificaciones.Materia.nombre AS materiaNombre, estudianteMatricula, Estudiante.nombre, cAcad, cEq, cCom, estatus
     FROM sistemaCalificaciones.CalificacionEstudiante  
@@ -25,13 +27,13 @@
     ON sistemaCalificaciones.CalificacionEstudiante.estudianteMatricula = sistemaCalificaciones.Estudiante.matricula
     INNER JOIN sistemaCalificaciones.Materia
     ON sistemaCalificaciones.CalificacionEstudiante.materiaClave = sistemaCalificaciones.Materia.clave
-    WHERE materiaClave = '$data[materias][0]'";
+    WHERE materiaClave = '$first'";
     
-    $stmt = sqlsrv_query( $conn, $query );
+    $stmt2 = sqlsrv_query( $conn, $query2 );
         
     $json2 = array();
 
-    while( $row = sqlsrv_fetch_array( $stmt, SQLSRV_FETCH_ASSOC) ) {
+    while( $row = sqlsrv_fetch_array( $stmt2, SQLSRV_FETCH_ASSOC) ) {
         $json2['estudianteMatricula'] =  $row['estudianteMatricula'];
         $json2['nombre'] = $row['nombre'];
         $json2['cAcad'] = $row['cAcad'];
