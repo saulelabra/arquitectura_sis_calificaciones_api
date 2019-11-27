@@ -5,7 +5,7 @@
     $adaptor = new AdaptorDB();
 
     switch($_SERVER['SCRIPT_NAME']) {
-        case "/userCheck2.php":
+        case "/userChecks.php":
             echo 'entered user check';
             $user = $_GET['user'];
             $pwd = $_GET['pwd'];
