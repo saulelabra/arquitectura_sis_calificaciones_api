@@ -3,20 +3,10 @@
     $user = $_GET['user'];
     $pwd = $_GET['pwd'];
 
-    // PHP Data Objects(PDO) Sample Code:
-    try {
-        $conn = new PDO("sqlsrv:server = tcp:sistema-calificaciones-db.database.windows.net,1433; Database = sistema-calificaciones", "saulelabra", "ConstruyeDB1");
-        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    }
-    catch (PDOException $e) {
-        print("Error connecting to SQL Server.");
-        die(print_r($e));
-    }
-
     // SQL Server Extension Sample Code:
-    /*$connectionInfo = array("UID" => "saulelabra", "pwd" => "ConstruyeDB1", "Database" => "sistema-calificaciones", "LoginTimeout" => 30, "Encrypt" => 1, "TrustServerCertificate" => 0);
+    $connectionInfo = array("UID" => "saulelabra", "pwd" => "ConstruyeDB1", "Database" => "sistema-calificaciones", "LoginTimeout" => 30, "Encrypt" => 1, "TrustServerCertificate" => 0);
     $serverName = "tcp:sistema-calificaciones-db.database.windows.net,1433";
-    $conn = sqlsrv_connect($serverName, $connectionInfo);*/
+    $conn = sqlsrv_connect($serverName, $connectionInfo);
 
     $query1 = "SELECT * FROM sistemaCalificaciones.Profesor WHERE email = '$user' AND contrasena = '$pwd'";
     $query2 = "SELECT * FROM sistemaCalificaciones.Estudiante WHERE matricula = '$user' AND contrasena = '$pwd'";
@@ -41,5 +31,5 @@
 
     return;
     
-    sqlsrv_free_stmt( $stmt);
+    //sqlsrv_free_stmt( $stmt);
 ?>
